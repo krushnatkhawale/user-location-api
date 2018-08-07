@@ -1,6 +1,10 @@
 package com.techpoint.clientinfo.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class GeoIP {
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private String ipAddress;
     private String city;
     private String latitude;
@@ -53,4 +57,13 @@ public class GeoIP {
         this.longitude = longitude;
     }
 
+    @Override
+    public String toString() {
+        try {
+            return OBJECT_MAPPER.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "Couldn't get map to json value: ";
+        }
+    }
 }

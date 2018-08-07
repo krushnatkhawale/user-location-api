@@ -14,6 +14,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         final GeoIP geoIP = getGeoIP(request);
+
         System.out.println("preHandle, By: " + geoIP + ", URI: " + request.getRequestURI());
         return true;
     }
