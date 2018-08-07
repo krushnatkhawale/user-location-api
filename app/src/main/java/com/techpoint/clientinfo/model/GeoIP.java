@@ -1,4 +1,4 @@
-package com.techpoint.clientinfo;
+package com.techpoint.clientinfo.model;
 
 public class GeoIP {
     private String ipAddress;

@@ -6,4 +6,5 @@ dependencyManagement{
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("com.maxmind.geoip2:geoip2:2.8.0")
 }
