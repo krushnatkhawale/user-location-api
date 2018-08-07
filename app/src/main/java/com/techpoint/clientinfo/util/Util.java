@@ -15,26 +15,28 @@ import static org.thymeleaf.util.StringUtils.isEmpty;
 public class Util {
     private static final Logger LOGGER = LoggerFactory.getLogger(Util.class);
 
-    public static String getClientIp(HttpServletRequest request) {
+    public static GeoIP getGeoIP(final HttpServletRequest request) throws IOException, GeoIp2Exception {
+        final String clientIp = getClientIp(request);
+        return GeoIPLocationService.getLocation(clientIp);
+    }
+
+    private static String getClientIp(HttpServletRequest request) {
         String remoteAddr = "";
         if (!isNull(request)) {
             remoteAddr = getForwardedFor(request);
             if (isEmpty(remoteAddr)) {
                 remoteAddr = getRealIp(request);
-                if (isEmpty(remoteAddr))
+                if (isEmpty(remoteAddr)) {
                     remoteAddr = request.getRemoteAddr();
-                LOGGER.info("RemoteAddress: {}", remoteAddr);
+                    LOGGER.info("RemoteAddress: {}", remoteAddr);
+                }
             } else {
-                return null;
+                return remoteAddr;
             }
         }
         return remoteAddr;
     }
 
-    public static GeoIP getGeoIP(final HttpServletRequest request) throws IOException, GeoIp2Exception {
-        final String clientIp = getClientIp(request);
-        return GeoIPLocationService.getLocation(clientIp);
-    }
 
     private static String getForwardedFor(HttpServletRequest request) {
         String forwardedFor = request.getHeader("X-FORWARDED-FOR");
