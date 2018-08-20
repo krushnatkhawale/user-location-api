@@ -1,4 +1,4 @@
-package com.techpoint.locationservice;
+package com.techpoint.service;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 
@@ -39,7 +38,7 @@ public class GeoIPLocationService {
     }
 
     private GeoIP getLocation(String ip) throws IOException, GeoIp2Exception {
-        LOGGER.info("Extracted IP: {}", ip);
+        LOGGER.debug("Extracted IP: {}", ip);
         if (ip.startsWith("172") || ip.startsWith("0")) {
             return null;
         } else {

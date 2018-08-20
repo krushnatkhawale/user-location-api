@@ -1,6 +1,6 @@
 package com.techpoint.interceptor;
 
-import com.techpoint.locationservice.GeoIPLocationService;
+import com.techpoint.service.GeoIPLocationService;
 import com.techpoint.model.GeoIP;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +32,6 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-        LOGGER.debug("postHandle, URI: {}", request.getRequestURI());
+       // LOGGER.debug("postHandle, URI: {}", request.getRequestURI());
     }
 }
