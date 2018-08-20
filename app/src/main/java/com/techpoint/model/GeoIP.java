@@ -1,10 +1,10 @@
-package com.techpoint.clientinfo.model;
+package com.techpoint.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class GeoIP {
-    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private String ipAddress;
     private String city;
     private String latitude;
