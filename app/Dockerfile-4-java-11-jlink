@@ -1,0 +1,4 @@
+FROM alpine
+ADD myjdk /opt/jdk
+ADD build/libs/*.jar App.jar
+CMD ["java", "-jar", "App.jar"]

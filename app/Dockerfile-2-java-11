@@ -1,0 +1,3 @@
+FROM adoptopenjdk/openjdk11
+ADD build/libs/*.jar App.jar
+CMD java -jar App.jar
