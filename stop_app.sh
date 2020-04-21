@@ -4,7 +4,7 @@ echo ""
 echo ""
 echo ""
 
-for pid in `ps -ef | grep "sudo nohup java -jar app/build/libs/user-location-api.jar &" | awk '{print $2}'` ; do sudo kill $pid ; done
+for pid in `ps -ef | grep "sudo nohup java -jar app/build/libs/user-location-api.jar" | awk '{print $2}'` ; do sudo kill $pid ; done
 
 echo ""
 echo ""
