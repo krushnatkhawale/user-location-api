@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,11 +49,11 @@ public class LocationService {
         LOGGER.info("Loaded {} ips from file", locations.size());
     }
 
-    @Scheduled(fixedDelay = 5 * 1000)
+    @Scheduled(fixedDelay = 60 * 60 * 1000)
     public synchronized void dumpLocationsToFile() {
         try {
             if (!newIps.isEmpty()) {
-                Files.write(Paths.get(IP_DATABASE_FILE), newIps.stream().map(Objects::toString).collect(Collectors.toList()));
+                Files.write(Paths.get(IP_DATABASE_FILE), newIps.stream().map(Objects::toString).collect(Collectors.toList()), StandardOpenOption.APPEND);
                 LOGGER.info("{} new IP's written to file", newIps.size());
                 locations.addAll(newIps);
                 newIps = new ArrayList<>();
