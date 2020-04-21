@@ -85,4 +85,8 @@ public class LocationService {
                 .filter(record -> record.get("ip").asText().equals(clientIp))
                 .findFirst();
     }
+
+    public Integer totalVisits() {
+        return locations.size();
+    }
 }
