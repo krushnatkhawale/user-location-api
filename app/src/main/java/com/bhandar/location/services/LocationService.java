@@ -87,6 +87,6 @@ public class LocationService {
     }
 
     public Integer totalVisits() {
-        return locations.size();
+        return locations.size() + newIps.size();
     }
 }
