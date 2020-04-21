@@ -1,3 +1,4 @@
 rootProject.name = 'user-location-api'
 include 'app'
 
+project(":app").name = rootProject.name

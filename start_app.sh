@@ -1,5 +1,12 @@
 #!/bin/sh
 
-sudo nohup java -jar app/build/libs/app.jar &
+echo ""
+echo ""
+echo ""
 
-echo "User location service launched successfully"
+sudo nohup java -jar app/build/libs/user-location-api.jar &
+
+echo "        User location service launched successfully"
+echo ""
+echo ""
+echo ""
