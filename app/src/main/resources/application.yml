@@ -2,9 +2,13 @@ spring.application.name: location-api
 
 server.port: 9091
 eureka.client.enabled: false
+spring.profiles.active: local
 
 ---
 spring:
-  profiles: aws
+  profiles: local
 
-eureka.client.enabled: true
+---
+spring:
+  profiles: prod
+

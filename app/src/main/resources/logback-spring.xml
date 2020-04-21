@@ -4,7 +4,6 @@
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>user-location-api.log</file>
-
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>logs/archived/janmat-frontend-.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <!-- each archived file, size max 10MB -->
@@ -14,18 +13,30 @@
             <!-- 60 days to keep -->
             <maxHistory>60</maxHistory>
         </rollingPolicy>
-
         <encoder>
             <pattern>%d %p %c{1.} [%t] %m%n</pattern>
         </encoder>
     </appender>
 
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yy-MM-dd - HH:mm:ss.SSS} %p %c{2} - %m%n</pattern>
+        </encoder>
+    </appender>
+
     <logger name="org.springframework" level="INFO"/>
     <logger name="com.bharat.janmat" level="DEBUG"/>
-    <root level="ERROR">
-        <appender-ref ref="FILE-ROLLING"/>
-    </root>
-    <root level="INFO">
-        <appender-ref ref="FILE-ROLLING"/>
-    </root>
+
+
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+    <springProfile name="prod">
+        <root level="DEBUG">
+            <appender-ref ref="FILE-ROLLING"/>
+        </root>
+    </springProfile>
+
 </configuration>

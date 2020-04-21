@@ -67,9 +67,9 @@ public class LocationService {
     public void processLocation(JsonNode jsonNode) {
         final String clientIp = jsonNode.get("ip").asText();
 
-        Optional<JsonNode> ip = getIp(clientIp);
+        Optional<JsonNode> ip = searchIpInExistingList(clientIp);
 
-        JsonNode timestampedIpInfo = ip.map(this::timestampedIpInfo).orElseGet(() -> timestampedIpInfo(locationClient.getLocation(jsonNode)));
+        JsonNode timestampedIpInfo = ip.map(this::timestampedIpInfo).orElse(timestampedIpInfo(locationClient.getLocation(jsonNode)));
 
         newIps.add(timestampedIpInfo);
     }
@@ -80,7 +80,7 @@ public class LocationService {
         return tempNode;
     }
 
-    private Optional<JsonNode> getIp(String clientIp) {
+    private Optional<JsonNode> searchIpInExistingList(String clientIp) {
         return locations.stream()
                 .filter(record -> record.get("ip").asText().equals(clientIp))
                 .findFirst();
